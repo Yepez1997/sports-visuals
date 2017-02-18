@@ -27,13 +27,8 @@ jinja_environment = jinja2.Environment(
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         my_vars = {"name":"Aureliano"}
-
         js = "var blah='coffee';"
-        js += "alert(blah);"
-
         js += "var matrix = [      [    0.  ,  4836.15,   835.07,   846.4 ],       [ 4836.15,     0.  ,  6291.64,  5759.34],       [  835.07,  6291.64,     0.  ,  4848.59],       [  846.4 ,  5759.34,  4848.59,     0.  ] ];"
-
-
         jsfinal = "<script type='text/javascript'>" + js + "</script>"
         panda = 1+3
         my_vars["cookies"] = panda
@@ -46,4 +41,3 @@ class MainHandler(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
 ], debug=True)
-
