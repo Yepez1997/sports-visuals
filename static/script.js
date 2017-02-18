@@ -5,7 +5,7 @@ function setName(name) {
   $('#name').html(name.capitalize());
 }
 
-function array_generator(input, usedColumns)
+function array_generator(input, usedColumns=defaultColumns)
 {
   var columnsLength = usedColumns.length;
   var newArray = usedColumns.map(function() {
@@ -32,12 +32,27 @@ function array_generator(input, usedColumns)
 
 // var matrix = [      [    0.  ,  4836.15,   835.07,   846.4 ],       [ 4836.15,     0.  ,  6291.64,  5759.34],       [  835.07,  6291.64,     0.  ,  4848.59],       [  846.4 ,  5759.34,  4848.59,     0.  ] ];
 
+$(window).on('resize', function(e) {
+  // alert();
+  // $("svg").width($(window).width() * 0.5);
+})
 
+function resizeSVG() {
+  var $svg = $("svg");
+  var $window = $(document);
+  var marginLeft = parseInt(($window.width() - $svg.outerWidth()) / 2.0).toString();
+  console.log(marginLeft);
+  $svg.css('margin-left', marginLeft);
+}
 function init() {
-  var defaultColumns =  ['angelsMLB', 'astrosMLB', 'yankeesMLB'];
+  var defaultColumns =  ['bluejaysMLB','dodgersMLB', 'astrosMLB', 'yankeesMLB','angelsMLB'];
   var matrix = array_generator(all_teams, defaultColumns);
   render(matrix);
   setName("user");
+  resizeSVG();
+  $(window).on('resize', function() {
+    resizeSVG();
+  });
 }
 
 $(document).ready(function() {

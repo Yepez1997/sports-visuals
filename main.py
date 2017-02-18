@@ -24,8 +24,13 @@ template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_environment = jinja2.Environment(
     loader = jinja2.FileSystemLoader(template_dir))
 
-class MainHandler(webapp2.RequestHandler):
+class HomeHandler(webapp2.RequestHandler):
+    
     def get(self):
+        template = jinja_environment.get_template('homepage.html')
+        self.response.write(template.render())
+
+    def post(self):
         my_vars = {"name":"Aureliano"}
         js = "var blah='coffee';"
         js += "var matrix = [      [    0.  ,  4836.15,   835.07,   846.4 ],       [ 4836.15,     0.  ,  6291.64,  5759.34],       [  835.07,  6291.64,     0.  ,  4848.59],       [  846.4 ,  5759.34,  4848.59,     0.  ] ];"
@@ -37,7 +42,11 @@ class MainHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('template.html')
         self.response.write(template.render(my_vars))
 
-
+    
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/', HomeHandler)
 ], debug=True)
+
+
+
+app.run()
