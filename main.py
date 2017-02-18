@@ -30,12 +30,9 @@ class MainHandler(webapp2.RequestHandler):
 
         js = "var blah='coffee';"
         js += "alert(blah);"
-        js += "console.log(blah);"
-
-
         jsfinal = "<script type='text/javascript'>" + js + "</script>"
-
-
+        panda = 1+3
+        my_vars["cookies"] = panda
         my_vars['jstags'] = jsfinal
 
         template = jinja_environment.get_template('template.html')
