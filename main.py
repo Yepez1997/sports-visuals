@@ -27,6 +27,17 @@ jinja_environment = jinja2.Environment(
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         my_vars = {"name":"Aureliano"}
+
+        js = "var blah='coffee';"
+        js += "alert(blah);"
+        js += "console.log(blah);"
+
+
+        jsfinal = "<script type='text/javascript'>" + js + "</script>"
+
+
+        my_vars['jstags'] = jsfinal
+
         template = jinja_environment.get_template('template.html')
         self.response.write(template.render(my_vars))
 
