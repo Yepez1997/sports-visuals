@@ -26,8 +26,9 @@ jinja_environment = jinja2.Environment(
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
+        my_vars = {"name":"Aureliano"}
         template = jinja_environment.get_template('template.html')
-        self.response.write(template.render())
+        self.response.write(template.render(my_vars))
 
 
 app = webapp2.WSGIApplication([
