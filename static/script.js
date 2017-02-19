@@ -29,7 +29,7 @@ function array_generator(input, usedColumns=defaultColumns)
 
   return newArray;
 }
-
+// MLB // 
 function get_mlb_teams()
 {
   teams = [];
@@ -48,8 +48,18 @@ function get_mlb_teams()
   return teams
 }
 
-function populate_form()
+// RUN //
+  $(document).ready(function() {
+    init();
+    populate_form();
+  });
+
+  $(window).on('resize', function(e) {
+    // alert();
+    // $("svg").width($(window).width() * 0.5);
+  })
 {
+// RUN //
 
   mlb = get_mlb_teams()
   for(i= 0; i < mlb.length; i++)
@@ -77,10 +87,191 @@ function go_time()
 
 // var matrix = [      [    0.  ,  4836.15,   835.07,   846.4 ],       [ 4836.15,     0.  ,  6291.64,  5759.34],       [  835.07,  6291.64,     0.  ,  4848.59],       [  846.4 ,  5759.34,  4848.59,     0.  ] ];
 
+
+// NFL //
+function get_nfl_teams()
+{
+  teams = [];
+  for(i = 0; i < all_teams.length; i++)
+  {
+    team = all_teams[i][0];
+    if(team.indexOf("NFL") !== -1 )
+    {
+      // console.log(all_teams[i][0])
+      if(teams.indexOf(team) === -1)
+      {
+        teams.push(team)
+      }
+    }
+  }
+  return teams
+}
+
+// RUN //
+  $(document).ready(function() {
+    init();
+    populate_form();
+  });
+
+  $(window).on('resize', function(e) {
+    // alert();
+    // $("svg").width($(window).width() * 0.5);
+// RUN //
+
+})
+{
+
+  nfl = get_nfl_teams()
+  for(i= 0; i < nfl.length; i++)
+  {
+
+   $('#teams-container-nfl').append("<label><input type='checkbox' class='nfl-check' value='"+nfl[i]+"'>"+nfl[i]+"</b></label><br>")
+
+  }
+}
+
+function go_time()
+{
+  selected = [];
+
+  $('.nfl-check').each(function(x,y){
+    if(y.checked)
+    {
+      selected.push(y.value);
+    }
+
+  });
+  return selected;
+
+}
+
+
+// NBA // 
+
+function get_nba_teams()
+{
+  teams = [];
+  for(i = 0; i < all_teams.length; i++)
+  {
+    team = all_teams[i][0];
+    if(team.indexOf("NBA") !== -1 )
+    {
+      // console.log(all_teams[i][0])
+      if(teams.indexOf(team) === -1)
+      {
+        teams.push(team)
+      }
+    }
+  }
+  return teams
+}
+
+//RUN//
+  $(document).ready(function() {
+    init();
+    populate_form();
+  });
+//RUN//
 $(window).on('resize', function(e) {
   // alert();
   // $("svg").width($(window).width() * 0.5);
 })
+{
+
+  nba = get_nba_teams()
+  for(i= 0; i < nba.length; i++)
+  {
+
+   $('#teams-container-nba').append("<label><input type='checkbox' class='nba-check' value='"+nba[i]+"'>"+nba[i]+"</b></label><br>")
+
+  }
+}
+
+function go_time()
+{
+  selected = [];
+
+  $('.nba-check').each(function(x,y){
+    if(y.checked)
+    {
+      selected.push(y.value);
+    }
+
+  });
+  return selected;
+
+}
+
+
+// NHL // 
+
+function get_nhl_teams()
+{
+  teams = [];
+  for(i = 0; i < all_teams.length; i++)
+  {
+    team = all_teams[i][0];
+    if(team.indexOf("NHL") !== -1 )
+    {
+      // console.log(all_teams[i][0])
+      if(teams.indexOf(team) === -1)
+      {
+        teams.push(team)
+      }
+    }
+  }
+  return teams
+}
+
+// RUN //
+$(document).ready(function() {
+  init();
+  populate_form();
+});
+
+$(window).on('resize', function(e) {
+  // alert();
+  // $("svg").width($(window).width() * 0.5);
+})
+//RUN//
+{
+
+  nhl = get_nhl_teams()
+  for(i= 0; i < nhl.length; i++)
+  {
+
+   $('#teams-container-nhl').append("<label><input type='checkbox' class='nhl-check' value='"+nhl[i]+"'>"+nhl[i]+"</b></label><br>")
+
+  }
+}
+
+function go_time()
+{
+  selected = [];
+
+  $('.nhl-check').each(function(x,y){
+    if(y.checked)
+    {
+      selected.push(y.value);
+    }
+
+  });
+  return selected;
+
+}
+
+// RUN //
+$(document).ready(function() {
+  init();
+  populate_form();
+});
+
+$(window).on('resize', function(e) {
+  // alert();
+  // $("svg").width($(window).width() * 0.5);
+})
+//RUN//
+//GRAPH CHART//
 
 function resizeSVG() {
   var $svg = $("svg");
@@ -100,10 +291,8 @@ function init() {
   });
 }
 
-$(document).ready(function() {
-	init();
-  populate_form();
-});
+
+
 
 function render(matrix) {
   $("svg").html('');
@@ -184,4 +373,4 @@ function render(matrix) {
 //   });
 // }
 
-$()
+
