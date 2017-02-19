@@ -140,13 +140,15 @@ this file is for the Caesar cipher article -->
     var newurl = "https://raw.githubusercontent.com/derektopper/treehacks/master/test.json";
 
 
-    d3.json(newurl, function(imports) {
+    function postrun(imports)
+    {
       var indexByName = {},
           nameByIndex = {},
           matrix = [],
           n = 0;
 
-      window.imports = imports;
+          console.log("in postirnia with"  + imports.length + "rows");
+          // console.log(imports);
 
 
 
@@ -185,6 +187,8 @@ this file is for the Caesar cipher article -->
       }
 
       output = array_generator();
+
+      // console.log(output);
 
       window.imports_orig = imports;
       imports = output;
@@ -275,7 +279,25 @@ this file is for the Caesar cipher article -->
           .style("fill", function(d) { return fill(d.source.index); })
           .attr("d", d3.svg.chord().radius(r0));
 
-    });
+    }
+
+
+
+
+$( document ).ready(function() {
+
+  $.getJSON( newurl, function( data ) {
+    window.imports = data;
+      postrun(window.imports);
+  });
+
+});
+
+   
+
+
+
+    // d3.json(newurl, function(imports) );
 
     // Returns an event handler for fading a given chord group.
     function fade(opacity) {

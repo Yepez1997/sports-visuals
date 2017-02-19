@@ -52,7 +52,7 @@ function get_mlb_teams()
 // RUN //
 
   //$(window).on('resize', function(e) {
-
+function make_headers()
 {
 // RUN //
 
