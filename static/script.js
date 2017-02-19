@@ -51,9 +51,8 @@ function get_mlb_teams()
 
 // RUN //
 
-  $(window).on('resize', function(e) {
+  //$(window).on('resize', function(e) {
 
-  })
 {
 // RUN //
 
@@ -74,7 +73,7 @@ function go_time_1()
     if(y.checked)
     {
       selected.push(y.value);
-      return array_generator(selected,selected);
+      
     }
 
   });
@@ -108,17 +107,17 @@ function get_nfl_teams()
 }
 
 // RUN //
-  $(document).ready(function() {
-    init();
+ // $(document).ready(function() {
+ //   init();
    
-  });
 
-  $(window).on('resize', function(e) {
+
+ // $(window).on('resize', function(e) {
     // alert();
     // $("svg").width($(window).width() * 0.5);
 // RUN //
 
-})
+
 {
 
   nfl = get_nfl_teams()
@@ -138,7 +137,6 @@ function go_time_2()
     if(y.checked)
     {
       selected.push(y.value);
-      return array_generator(selected,selected);
     }
 
   });
@@ -147,6 +145,7 @@ function go_time_2()
 
 
 }
+
 // --------------------------------------------------- //
 
 // NBA // 
@@ -170,10 +169,10 @@ function get_nba_teams()
 }
 
 //RUN//
-$(window).on('resize', function(e) {
+//$(window).on('resize', function(e) {
   // alert();
   // $("svg").width($(window).width() * 0.5);
-})
+
 {
 
   nba = get_nba_teams()
@@ -193,7 +192,7 @@ function go_time_3()
     if(y.checked)
     {
       selected.push(y.value);
-      return array_generator(selected,selected);
+      
     }
 
   });
@@ -224,10 +223,7 @@ function get_nhl_teams()
   return teams
 }
 
-$(window).on('resize', function(e) {
-  // alert();
-  // $("svg").width($(window).width() * 0.5);
-})
+
 //RUN//
 {
 
@@ -248,7 +244,7 @@ function go_time_4()
     if(y.checked)
     {
       selected.push(y.value);
-      return array_generator(selected,selected);
+     
     }
 
   });
@@ -257,35 +253,18 @@ function go_time_4()
 
 }
 
-$(window).on('resize', function(e) {
-  // alert();
-  // $("svg").width($(window).width() * 0.5);
-})
+
 //RUN//
 //GRAPH CHART//
 
 // ------------------------------------------------------------ //
 
-function resizeSVG() {
-  var $svg = $("svg");
-  var $window = $(document);
-  var marginLeft = parseInt(($window.width() - $svg.outerWidth()) / 2.0).toString();
-  console.log(marginLeft);
-  $svg.css('margin-left', marginLeft);
-}
-function init() {
-  var defaultColumns =  ['bluejaysMLB','dodgersMLB', 'astrosMLB', 'yankeesMLB','angelsMLB'];
-  var matrix = array_generator(all_teams, defaultColumns);
-  render(matrix);
-  setName("user");
-  resizeSVG();
-  $(window).on('resize', function() {
-    resizeSVG();
-  });
-}
 
 
 
+
+
+/*
 
 function render(matrix) {
   $("svg").html('');
@@ -294,6 +273,7 @@ function render(matrix) {
       height = +svg.attr("height"),
       outerRadius = Math.min(width, height) * 0.5 - 40,
       innerRadius = outerRadius - 30;
+
 
   var formatValue = d3.formatPrefix(",.0", 1e3);
 
@@ -344,7 +324,7 @@ function render(matrix) {
       .attr("transform", function(d) { return d.angle > Math.PI ? "rotate(180) translate(-16)" : null; })
       .style("text-anchor", function(d) { return d.angle > Math.PI ? "end" : null; })
       .text(function(d) { return formatValue(d.value); });
-      */
+      
 
   g.append("g")
       .attr("class", "ribbons")
@@ -357,7 +337,6 @@ function render(matrix) {
 
 }
 
-
 // Returns an array of tick angles and values for a given group and step.
 // function groupTicks(d, step) {
 //   var k = (d.endAngle - d.startAngle) / d.value;
@@ -366,4 +345,4 @@ function render(matrix) {
 //   });
 // }
 
-
+*/

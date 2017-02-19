@@ -11,7 +11,7 @@
   text-color: blue;
 }
 
-svg {
-	margin: 0px auto 0px auto;
-}
+#body1{
+	overflow: hidden;
 
+}

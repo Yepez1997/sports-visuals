@@ -20,7 +20,7 @@ import sys
 import json
 import os
 
-template_dir = os.path.join(os.path.dirname(__file__), 'templates')
+template_dir = os.path.join(os.path.dirname(__file__), 'template')
 jinja_environment = jinja2.Environment(
     loader = jinja2.FileSystemLoader(template_dir))
 
@@ -31,18 +31,10 @@ class HomeHandler(webapp2.RequestHandler):
         self.response.write(template.render())
 
     def post(self):
-        my_vars = {"name":"Aureliano"}
-        js = "var blah='coffee';"
-        js += "var matrix = [      [    0.  ,  4836.15,   835.07,   846.4 ],       [ 4836.15,     0.  ,  6291.64,  5759.34],       [  835.07,  6291.64,     0.  ,  4848.59],       [  846.4 ,  5759.34,  4848.59,     0.  ] ];"
-        jsfinal = "<script type='text/javascript'>" + js + "</script>"
-        panda = 1+3
-        my_vars["cookies"] = panda
-        my_vars['jstags'] = jsfinal
+       template = jinja_environment.get_template('template.html')
+       self.response.write(template.render())
 
-        template = jinja_environment.get_template('template.html')
-        self.response.write(template.render(my_vars))
 
-    
 app = webapp2.WSGIApplication([
     ('/', HomeHandler)
 ], debug=True)
