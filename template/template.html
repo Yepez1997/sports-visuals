@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<!-- while this can be used as a template for all cipher articles,
+this file is for the Caesar cipher article -->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="static/template.css">
+    <link href="static/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script src="static/bootstrap.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="static/all_teams.js"></script>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <script type="text/javascript" src="http://mbostock.github.io/d3/talk/20111018/d3/d3.js"></script>
+    <script type="text/javascript" src="http://mbostock.github.io/d3/talk/20111018/d3/d3.layout.js"></script>
+    <script src="static/script.js"></script>
+    
+
+        
+
+</head>
+<body>
+
+
+  <title> Sports </title>
+    
+    <style type="text/css">
+
+    text {
+      font-size: 10px;
+    }
+
+    path.chord {
+      fill-opacity: .80;
+    }
+
+    </style>
+
+    <style>
+    h1 {color:black;}
+    </style>
+
+
+
+    <div class="center">
+    <h1 class="text-center"> Sports Data </h1>
+    </div>
+
+
+       <div class ="container">
+          
+          <div id="body1">
+         
+       </div>
+    
+   
+    <br/>
+
+    <div class="container">
+        <div class="row">
+
+        
+        <div class="col-md-3">
+         <p id="mlb"> <u> MLB </u></p>
+        <form id="teams-form">
+            <div id="teams-container"></div>
+        </form> 
+        </div>
+        
+
+        
+        <div class="col-md-3">
+        <p id="nfl"> <u> NFL </u></p>
+        <form id="teams-form">
+            <div id="teams-container-nfl"></div>
+        </form> 
+        </div>
+        
+
+     
+        <div class="col-md-3">
+        <p id="nhl"><u> NHL </u></p>
+        <form id="teams-form">
+            <div id="teams-container-nhl"></div>
+        </form> 
+        </div>
+        
+
+
+      
+        <div class="col-md-3">
+        <p id="nba"><u> NBA </u></p>
+        <form id="teams-form">
+            <div id="teams-container-nba"></div>
+
+        </form> 
+        </div>
+        <button onclick="doshit()"> do sports </button>
+
+
+
+    
+
+
+
+    <script>
+
+
+
+
+    var w = 1280,
+        h = 800,
+        r1 = h / 2,
+        r0 = r1 - 80;
+
+    var all_teams = [];
+
+    var fill = d3.scale.category20c();
+
+    var chord = d3.layout.chord()
+        .padding(.04)
+        .sortSubgroups(d3.descending)
+        .sortChords(d3.descending);
+
+    var arc = d3.svg.arc()
+        .innerRadius(r0)
+        .outerRadius(r0 + 20);
+
+    var svg = d3.select("#body1").append("svg:svg")
+        .attr("width", w)
+        .attr("height", h)
+      .append("svg:g")
+        .attr("transform", "translate(" + w / 2 + "," + h / 2 + ")");
+
+        
+    var oldurl =    "http://mbostock.github.io/d3/talk/20111018/flare-imports.json";
+    var newurl = "https://raw.githubusercontent.com/derektopper/treehacks/master/test.json";
+
+
+    d3.json(newurl, function(imports) {
+      var indexByName = {},
+          nameByIndex = {},
+          matrix = [],
+          n = 0;
+
+      window.imports = imports;
+
+
+
+
+    usedColumns = ["Los_Angeles_Angels_MLB", "Houston_Astros_MLB", "Toronto_Blue_Jays_MLB", "Toronto_Raptors_NBA", "Toronto_Maple_Leafs_NHL"]
+    import2 = []
+
+
+
+    function array_generator()
+      {
+        var ben = [];
+        var columnsLength = usedColumns.length;
+        var newArray = usedColumns.map(function() {
+          var r = [];
+          for(var i = 0; i < columnsLength; i++) {
+            r.push(0);
+          }
+          return r;
+        });
+
+        for (var j = 0; j < usedColumns.length; j++) {
+          for (var k = 0; k < usedColumns.length; k++) {
+            for(var i = 0; i < imports.length; i++) {
+              if (imports[i].name == usedColumns[j] && imports[i].imports[0] == usedColumns[k]) {
+                newArray[j][k] = imports[i].size;
+                console.log("adding at" + " i " + i + " j " + j + " k " + k );
+                ben.push(imports[i]);
+                break;
+              }
+            }
+          }
+        }
+
+        return ben;
+      }
+
+      output = array_generator();
+
+      window.imports_orig = imports;
+      imports = output;
+
+      window.imports = imports;
+
+
+
+
+      self.names = [];
+
+      // Returns the Flare package name for the given class name.
+      function name(name) {
+        return name
+        //.substring(0, name.lastIndexOf(".")).substring(6);
+      }
+
+      // Compute a unique index for each package name.
+      imports.forEach(function(d) {
+        d = name(d.name);
+        if (!(d in indexByName)) {
+          nameByIndex[n] = d;
+          indexByName[d] = n++;
+          names.push(d);
+        }
+      });
+      
+
+      // Construct a square matrix counting package imports.
+      imports.forEach(function(d) {
+        var source = indexByName[name(d.name)];
+            row = matrix[source];
+        if (!row) {
+         row = matrix[source] = [];
+         for (var i = -1; ++i < n;) row[i] = 0;
+        }
+        
+        row[indexByName[name(d)]] = d.size;
+        
+       d.imports.forEach(
+           function(e)
+           {
+            var idx = indexByName[name(e)];
+             //row[idx]++; 
+             row[idx] = d.size;
+           }
+       );
+      });
+
+
+
+      
+    //  console.log(imports);
+    //  console.log(nameByIndex);
+    //  console.log(indexByName);
+      console.log(matrix);
+      
+      chord.matrix(matrix);
+
+      var g = svg.selectAll("g.group")
+          .data(chord.groups)
+        .enter().append("svg:g")
+          .attr("class", "group")
+          .on("mouseover", fade(.02))
+          .on("mouseout", fade(.80));
+
+      g.append("svg:path")
+          .style("stroke", function(d) { return fill(d.index); })
+          .style("fill", function(d) { return fill(d.index); })
+          .attr("d", arc);
+
+      g.append("svg:text")
+          .each(function(d) { d.angle = (d.startAngle + d.endAngle) / 2; })
+          .attr("dy", ".35em")
+          .attr("text-anchor", function(d) { return d.angle > Math.PI ? "end" : null; })
+          .attr("transform", function(d) {
+            return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")"
+                + "translate(" + (r0 + 26) + ")"
+                + (d.angle > Math.PI ? "rotate(180)" : "");
+          })
+          .text(function(d) { return nameByIndex[d.index]; });
+
+      svg.selectAll("path.chord")
+          .data(chord.chords)
+        .enter().append("svg:path")
+          .attr("class", "chord")
+          .style("stroke", function(d) { return d3.rgb(fill(d.source.index)).darker(); })
+          .style("fill", function(d) { return fill(d.source.index); })
+          .attr("d", d3.svg.chord().radius(r0));
+
+    });
+
+    // Returns an event handler for fading a given chord group.
+    function fade(opacity) {
+      return function(d, i) {
+        svg.selectAll("path.chord")
+            .filter(function(d) { return d.source.index != i && d.target.index != i; })
+          .transition()
+            .style("stroke-opacity", opacity)
+            .style("fill-opacity", opacity);
+      };
+    }
+
+        </script>
+       
+        
+    
+</div>
+
+  
+       
+    </div>
+
+</body>
+
+</html>
+
+
+
+   
