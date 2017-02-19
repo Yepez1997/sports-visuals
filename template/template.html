@@ -140,6 +140,58 @@ this file is for the Caesar cipher article -->
     var newurl = "https://raw.githubusercontent.com/derektopper/treehacks/master/test.json";
 
 
+
+    function great_filter(imports, teams)
+    {
+
+
+      // teams = ["Los_Angeles_Angels_MLB", "Houston_Astros_MLB", "Toronto_Blue_Jays_MLB", "Toronto_Raptors_NBA", "Toronto_Maple_Leafs_NHL"]
+      import2 = []
+
+
+
+      function array_generator()
+        {
+          var ben = [];
+          var columnsLength = teams.length;
+          var newArray = teams.map(function() {
+            var r = [];
+            for(var i = 0; i < columnsLength; i++) {
+              r.push(0);
+            }
+            return r;
+          });
+
+          for (var j = 0; j < teams.length; j++) {
+            for (var k = 0; k < teams.length; k++) {
+              for(var i = 0; i < imports.length; i++) {
+                if (imports[i].name == teams[j] && imports[i].imports[0] == teams[k]) {
+                  newArray[j][k] = imports[i].size;
+                  console.log("adding at" + " i " + i + " j " + j + " k " + k );
+                  ben.push(imports[i]);
+                  break;
+                }
+              }
+            }
+          }
+
+          return ben;
+        }
+
+
+        return array_generator();
+
+        // // console.log(output);
+
+        // window.imports_orig = imports;
+        // imports = output;
+
+        // window.imports = imports;
+
+
+    }
+
+
     function postrun(imports)
     {
       var indexByName = {},
@@ -147,57 +199,7 @@ this file is for the Caesar cipher article -->
           matrix = [],
           n = 0;
 
-          console.log("in postirnia with"  + imports.length + "rows");
-          // console.log(imports);
-
-
-
-
-    usedColumns = ["Los_Angeles_Angels_MLB", "Houston_Astros_MLB", "Toronto_Blue_Jays_MLB", "Toronto_Raptors_NBA", "Toronto_Maple_Leafs_NHL"]
-    import2 = []
-
-
-
-    function array_generator()
-      {
-        var ben = [];
-        var columnsLength = usedColumns.length;
-        var newArray = usedColumns.map(function() {
-          var r = [];
-          for(var i = 0; i < columnsLength; i++) {
-            r.push(0);
-          }
-          return r;
-        });
-
-        for (var j = 0; j < usedColumns.length; j++) {
-          for (var k = 0; k < usedColumns.length; k++) {
-            for(var i = 0; i < imports.length; i++) {
-              if (imports[i].name == usedColumns[j] && imports[i].imports[0] == usedColumns[k]) {
-                newArray[j][k] = imports[i].size;
-                console.log("adding at" + " i " + i + " j " + j + " k " + k );
-                ben.push(imports[i]);
-                break;
-              }
-            }
-          }
-        }
-
-        return ben;
-      }
-
-      output = array_generator();
-
-      // console.log(output);
-
-      window.imports_orig = imports;
-      imports = output;
-
-      window.imports = imports;
-
-
-
-
+  
       self.names = [];
 
       // Returns the Flare package name for the given class name.
@@ -279,8 +281,15 @@ this file is for the Caesar cipher article -->
           .style("fill", function(d) { return fill(d.source.index); })
           .attr("d", d3.svg.chord().radius(r0));
 
-    }
+    } //postrun
 
+
+function find_teams()
+{
+  teams = []
+
+  // for
+}
 
 
 
@@ -288,7 +297,12 @@ $( document ).ready(function() {
 
   $.getJSON( newurl, function( data ) {
     window.imports = data;
-      postrun(window.imports);
+
+      tteams = ["Los_Angeles_Angels_MLB", "Houston_Astros_MLB", "Toronto_Blue_Jays_MLB", "Toronto_Raptors_NBA", "Toronto_Maple_Leafs_NHL"];
+
+      filtered = great_filter(data, tteams);
+
+      postrun(filtered);
   });
 
 });

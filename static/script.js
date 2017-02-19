@@ -34,9 +34,9 @@ function array_generator(input, usedColumns=defaultColumns)
 function get_mlb_teams()
 {
   teams = [];
-  for(i = 0; i < all_teams.length; i++)
+  for(i = 0; i < window.imports.length; i++)
   {
-    team = all_teams[i][0];
+    team = window.imports[i].name;
     if(team.indexOf("MLB") !== -1 )
     {
       // console.log(all_teams[i][0])
@@ -52,7 +52,7 @@ function get_mlb_teams()
 // RUN //
 
   //$(window).on('resize', function(e) {
-function make_headers()
+function make_headers1()
 {
 // RUN //
 
@@ -91,9 +91,9 @@ function go_time_1()
 function get_nfl_teams()
 {
   teams = [];
-  for(i = 0; i < all_teams.length; i++)
+  for(i = 0; i < window.imports.length; i++)
   {
-    team = all_teams[i][0];
+    team = window.imports[i].name;
     if(team.indexOf("NFL") !== -1 )
     {
       // console.log(all_teams[i][0])
@@ -117,7 +117,7 @@ function get_nfl_teams()
     // $("svg").width($(window).width() * 0.5);
 // RUN //
 
-
+function make_headers2()
 {
 
   nfl = get_nfl_teams()
@@ -153,9 +153,9 @@ function go_time_2()
 function get_nba_teams()
 {
   teams = [];
-  for(i = 0; i < all_teams.length; i++)
+  for(i = 0; i < window.imports.length; i++)
   {
-    team = all_teams[i][0];
+    team = window.imports[i].name;
     if(team.indexOf("NBA") !== -1 )
     {
       // console.log(all_teams[i][0])
@@ -173,6 +173,7 @@ function get_nba_teams()
   // alert();
   // $("svg").width($(window).width() * 0.5);
 
+function make_headers4()
 {
 
   nba = get_nba_teams()
@@ -208,9 +209,9 @@ function go_time_3()
 function get_nhl_teams()
 {
   teams = [];
-  for(i = 0; i < all_teams.length; i++)
+  for(i = 0; i < window.imports.length; i++)
   {
-    team = all_teams[i][0];
+    team = window.imports[i].name;
     if(team.indexOf("NHL") !== -1 )
     {
       // console.log(all_teams[i][0])
@@ -225,6 +226,7 @@ function get_nhl_teams()
 
 
 //RUN//
+function make_headers3()
 {
 
   nhl = get_nhl_teams()
@@ -254,6 +256,13 @@ function go_time_4()
 }
 
 
+function all_headers()
+{
+  make_headers1();
+  make_headers2();
+  make_headers3();
+  make_headers4();
+}
 //RUN//
 //GRAPH CHART//
 
