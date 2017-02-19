@@ -29,6 +29,7 @@ function array_generator(input, usedColumns=defaultColumns)
 
   return newArray;
 }
+// --------------------------------------------------------------//
 // MLB // 
 function get_mlb_teams()
 {
@@ -49,14 +50,9 @@ function get_mlb_teams()
 }
 
 // RUN //
-  $(document).ready(function() {
-    init();
-    populate_form();
-  });
 
   $(window).on('resize', function(e) {
-    // alert();
-    // $("svg").width($(window).width() * 0.5);
+
   })
 {
 // RUN //
@@ -70,7 +66,7 @@ function get_mlb_teams()
   }
 }
 
-function go_time()
+function go_time_1()
 {
   selected = [];
 
@@ -78,15 +74,19 @@ function go_time()
     if(y.checked)
     {
       selected.push(y.value);
+      return array_generator(selected,selected);
     }
 
   });
-  return selected;
+  //selected = input = usedColumns;
+  return selected
 
 }
 
-// var matrix = [      [    0.  ,  4836.15,   835.07,   846.4 ],       [ 4836.15,     0.  ,  6291.64,  5759.34],       [  835.07,  6291.64,     0.  ,  4848.59],       [  846.4 ,  5759.34,  4848.59,     0.  ] ];
 
+//------------------------------------------------------------//
+// var matrix = [      [    0.  ,  4836.15,   835.07,   846.4 ],       [ 4836.15,     0.  ,  6291.64,  5759.34],       [  835.07,  6291.64,     0.  ,  4848.59],       [  846.4 ,  5759.34,  4848.59,     0.  ] ];
+// ------------------------------------------------------------//
 
 // NFL //
 function get_nfl_teams()
@@ -110,7 +110,7 @@ function get_nfl_teams()
 // RUN //
   $(document).ready(function() {
     init();
-    populate_form();
+   
   });
 
   $(window).on('resize', function(e) {
@@ -130,7 +130,7 @@ function get_nfl_teams()
   }
 }
 
-function go_time()
+function go_time_2()
 {
   selected = [];
 
@@ -138,13 +138,16 @@ function go_time()
     if(y.checked)
     {
       selected.push(y.value);
+      return array_generator(selected,selected);
     }
 
   });
-  return selected;
+  return selected 
+  //= input = usedColumns;
+
 
 }
-
+// --------------------------------------------------- //
 
 // NBA // 
 
@@ -167,11 +170,6 @@ function get_nba_teams()
 }
 
 //RUN//
-  $(document).ready(function() {
-    init();
-    populate_form();
-  });
-//RUN//
 $(window).on('resize', function(e) {
   // alert();
   // $("svg").width($(window).width() * 0.5);
@@ -187,7 +185,7 @@ $(window).on('resize', function(e) {
   }
 }
 
-function go_time()
+function go_time_3()
 {
   selected = [];
 
@@ -195,13 +193,16 @@ function go_time()
     if(y.checked)
     {
       selected.push(y.value);
+      return array_generator(selected,selected);
     }
 
   });
-  return selected;
+  return selected
+  ;
 
 }
 
+// ------------------------------------------------------------- //
 
 // NHL // 
 
@@ -223,12 +224,6 @@ function get_nhl_teams()
   return teams
 }
 
-// RUN //
-$(document).ready(function() {
-  init();
-  populate_form();
-});
-
 $(window).on('resize', function(e) {
   // alert();
   // $("svg").width($(window).width() * 0.5);
@@ -245,7 +240,7 @@ $(window).on('resize', function(e) {
   }
 }
 
-function go_time()
+function go_time_4()
 {
   selected = [];
 
@@ -253,18 +248,14 @@ function go_time()
     if(y.checked)
     {
       selected.push(y.value);
+      return array_generator(selected,selected);
     }
 
   });
-  return selected;
+  
+  return selected
 
 }
-
-// RUN //
-$(document).ready(function() {
-  init();
-  populate_form();
-});
 
 $(window).on('resize', function(e) {
   // alert();
@@ -272,6 +263,8 @@ $(window).on('resize', function(e) {
 })
 //RUN//
 //GRAPH CHART//
+
+// ------------------------------------------------------------ //
 
 function resizeSVG() {
   var $svg = $("svg");
