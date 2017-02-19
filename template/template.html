@@ -58,6 +58,9 @@ this file is for the Caesar cipher article -->
     
    
     <br/>
+        <form action="javascript:false">
+        <button  id="do-sports">Text</button>
+        </form>
 
     <div class="container">
         <div class="row">
@@ -98,11 +101,7 @@ this file is for the Caesar cipher article -->
 
         </form> 
         </div>
-        <form action="javascript:false">
-        <!-- <input type="button"  value="d"> do sports </input> -->
 
-<button  id="do-sports">Text</button>
-</form>
 
 
     
@@ -306,16 +305,21 @@ $( document ).ready(function() {
 
 
   $('#do-sports').click(function(){
+    postrun(great_filter(window.imports, get_checked()));
 
-    // $("#body1").html("");
+    // tt = get_checked();
+    //   filtered = great_filter(window.imports, tt);
+    //     postrun(filtered);
+
+    
 
 
-    tt = get_checked();
-    console.log(tt);
+    // tt = get_checked();
+    // console.log(tt);
 
-     filtered = great_filter(window.imports, tt);
-     console.log("filtered to " + filtered.length + " rows");
-      postrun(filtered);
+    //  filtered = great_filter(window.imports, tt);
+    //  console.log("filtered to " + filtered.length + " rows");
+    //   postrun(filtered);
 
   });
 
