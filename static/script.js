@@ -48,6 +48,33 @@ function get_mlb_teams()
   return teams
 }
 
+function populate_form()
+{
+
+  mlb = get_mlb_teams()
+  for(i= 0; i < mlb.length; i++)
+  {
+
+   $('#teams-container').append("<label><input type='checkbox' class='mlb-check' value='"+mlb[i]+"'>"+mlb[i]+"</b></label><br>")
+
+  }
+}
+
+function go_time()
+{
+  selected = [];
+
+  $('.mlb-check').each(function(x,y){
+    if(y.checked)
+    {
+      selected.push(y.value);
+    }
+
+  });
+  return selected;
+
+}
+
 // var matrix = [      [    0.  ,  4836.15,   835.07,   846.4 ],       [ 4836.15,     0.  ,  6291.64,  5759.34],       [  835.07,  6291.64,     0.  ,  4848.59],       [  846.4 ,  5759.34,  4848.59,     0.  ] ];
 
 $(window).on('resize', function(e) {
@@ -75,6 +102,7 @@ function init() {
 
 $(document).ready(function() {
 	init();
+  populate_form();
 });
 
 function render(matrix) {
