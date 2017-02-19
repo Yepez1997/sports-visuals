@@ -65,22 +65,6 @@ function make_headers1()
   }
 }
 
-function go_time_1()
-{
-  selected = [];
-
-  $('.mlb-check').each(function(x,y){
-    if(y.checked)
-    {
-      selected.push(y.value);
-      
-    }
-
-  });
-  //selected = input = usedColumns;
-  return selected
-
-}
 
 
 //------------------------------------------------------------//
@@ -129,22 +113,8 @@ function make_headers2()
   }
 }
 
-function go_time_2()
-{
-  selected = [];
-
-  $('.nfl-check').each(function(x,y){
-    if(y.checked)
-    {
-      selected.push(y.value);
-    }
-
-  });
-  return selected 
-  //= input = usedColumns;
 
 
-}
 
 // --------------------------------------------------- //
 
@@ -185,22 +155,7 @@ function make_headers4()
   }
 }
 
-function go_time_3()
-{
-  selected = [];
 
-  $('.nba-check').each(function(x,y){
-    if(y.checked)
-    {
-      selected.push(y.value);
-      
-    }
-
-  });
-  return selected
-  ;
-
-}
 
 // ------------------------------------------------------------- //
 
@@ -238,10 +193,35 @@ function make_headers3()
   }
 }
 
-function go_time_4()
+
+
+function get_checked()
 {
   selected = [];
 
+  $('.mlb-check').each(function(x,y){
+    if(y.checked)
+    {
+      selected.push(y.value);
+      
+    }
+
+  });
+  $('.nfl-check').each(function(x,y){
+    if(y.checked)
+    {
+      selected.push(y.value);
+    }
+
+  });
+  $('.nba-check').each(function(x,y){
+    if(y.checked)
+    {
+      selected.push(y.value);
+      
+    }
+
+  });
   $('.nhl-check').each(function(x,y){
     if(y.checked)
     {

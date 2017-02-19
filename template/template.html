@@ -98,8 +98,11 @@ this file is for the Caesar cipher article -->
 
         </form> 
         </div>
-        <button onclick="doshit()"> do sports </button>
+        <form action="javascript:false">
+        <!-- <input type="button"  value="d"> do sports </input> -->
 
+<button  id="do-sports">Text</button>
+</form>
 
 
     
@@ -241,12 +244,12 @@ this file is for the Caesar cipher article -->
       });
 
 
-
+      window.matrix = matrix;
       
     //  console.log(imports);
     //  console.log(nameByIndex);
     //  console.log(indexByName);
-      console.log(matrix);
+      // console.log(matrix);
       
       chord.matrix(matrix);
 
@@ -284,13 +287,6 @@ this file is for the Caesar cipher article -->
     } //postrun
 
 
-function find_teams()
-{
-  teams = []
-
-  // for
-}
-
 
 
 $( document ).ready(function() {
@@ -303,6 +299,24 @@ $( document ).ready(function() {
       filtered = great_filter(data, tteams);
 
       postrun(filtered);
+
+      all_headers();
+  });
+
+
+
+  $('#do-sports').click(function(){
+
+    // $("#body1").html("");
+
+
+    tt = get_checked();
+    console.log(tt);
+
+     filtered = great_filter(window.imports, tt);
+     console.log("filtered to " + filtered.length + " rows");
+      postrun(filtered);
+
   });
 
 });
