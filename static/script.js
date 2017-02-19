@@ -30,6 +30,24 @@ function array_generator(input, usedColumns=defaultColumns)
   return newArray;
 }
 
+function get_mlb_teams()
+{
+  teams = [];
+  for(i = 0; i < all_teams.length; i++)
+  {
+    team = all_teams[i][0];
+    if(team.indexOf("MLB") !== -1 )
+    {
+      // console.log(all_teams[i][0])
+      if(teams.indexOf(team) === -1)
+      {
+        teams.push(team)
+      }
+    }
+  }
+  return teams
+}
+
 // var matrix = [      [    0.  ,  4836.15,   835.07,   846.4 ],       [ 4836.15,     0.  ,  6291.64,  5759.34],       [  835.07,  6291.64,     0.  ,  4848.59],       [  846.4 ,  5759.34,  4848.59,     0.  ] ];
 
 $(window).on('resize', function(e) {
@@ -137,3 +155,5 @@ function render(matrix) {
 //     return {value: value, angle: value * k + d.startAngle};
 //   });
 // }
+
+$()
