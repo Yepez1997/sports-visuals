@@ -1,3 +1,3 @@
-TreeHacks Project
+# TreeHacks Project
 http://sports-visuals.appspot.com/
-CSS in Progress
+Website is no longer avaialable, source code is still available
